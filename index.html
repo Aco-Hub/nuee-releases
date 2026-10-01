@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nuée — download</title>
+<link rel="icon" type="image/png" href="nuee-logo.png">
 <meta name="description" content="Nuée keeps your data on all your devices, directly between them, with no server.">
 <!-- Everything is inline: the page makes no request of its own, and the invitation after `#` never
      leaves the device that opened it (Nuée's specs/006 FR-016, specs/010 FR-010). -->
@@ -33,6 +34,12 @@
     max-width: 34rem;
     margin: 0 auto;
     padding: 2.5rem 1.25rem 3rem;
+  }
+
+  .logo {
+    display: block;
+    border-radius: 22%;
+    margin-bottom: 1rem;
   }
 
   h1, h2 {
@@ -150,13 +157,7 @@
 </head>
 <body>
 <main>
-  <svg width="96" height="64" viewBox="0 0 120 80" aria-hidden="true">
-    <path d="M14 14 L58 42 L102 10 M58 42 L84 62" stroke="#8aa7bd" stroke-width="3" fill="none"/>
-    <circle cx="14" cy="14" r="8" fill="#6b8fab"/>
-    <circle cx="102" cy="10" r="8" fill="#6b8fab"/>
-    <circle cx="84" cy="62" r="7" fill="#6b8fab"/>
-    <circle cx="58" cy="42" r="13" fill="#2f5d7c"/>
-  </svg>
+  <img class="logo" src="nuee-logo.png" width="88" height="88" alt="">
   <h1>Nuée</h1>
   <p class="lead">Your data, on all your devices. Directly between them, with no server.</p>
 
