@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nuée — download</title>
+<meta name="description" content="Nuée keeps your data on all your devices, directly between them, with no server.">
+<!-- Everything is inline: the page makes no request of its own, and the invitation after `#` never
+     leaves the device that opened it (Nuée's specs/006 FR-016, specs/010 FR-010). -->
+<style>
+  :root {
+    --ground: #f4f2ee;
+    --ink: #1b1d22;
+    --muted: #5d6068;
+    --accent: #2f5d7c;
+    --card: #ffffff;
+    --line: #dcd8d0;
+    color-scheme: light;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  main {
+    max-width: 34rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 3rem;
+  }
+
+  h1, h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 .5rem;
+  }
+
+  h1 {
+    font-size: 2.6rem;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+  }
+
+  .lead {
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .inline-code {
+    font: 600 1rem/1.2 ui-monospace, "SFMono-Regular", Menlo, monospace;
+    letter-spacing: .08em;
+    color: var(--accent);
+  }
+
+  #join-link {
+    margin: .25rem 0 .9rem;
+  }
+
+  .button {
+    display: block;
+    width: 100%;
+    padding: .9rem 1rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .button.secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    margin-top: .75rem;
+  }
+
+  ol {
+    padding-left: 1.25rem;
+    margin: 1rem 0 0;
+  }
+
+  li {
+    margin-bottom: .5rem;
+  }
+
+  pre {
+    margin: 0;
+    padding: .9rem 1rem;
+    border-radius: .6rem;
+    background: #1f2933;
+    color: #f4f2ee;
+    font: .9rem/1.5 ui-monospace, "SFMono-Regular", Menlo, monospace;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  details {
+    margin-top: 2rem;
+    color: var(--muted);
+  }
+
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .hint {
+    color: var(--muted);
+    font-size: .92rem;
+  }
+
+  @media (min-width: 48rem) {
+    main {
+      padding-top: 5rem;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <svg width="96" height="64" viewBox="0 0 120 80" aria-hidden="true">
+    <path d="M14 14 L58 42 L102 10 M58 42 L84 62" stroke="#8aa7bd" stroke-width="3" fill="none"/>
+    <circle cx="14" cy="14" r="8" fill="#6b8fab"/>
+    <circle cx="102" cy="10" r="8" fill="#6b8fab"/>
+    <circle cx="84" cy="62" r="7" fill="#6b8fab"/>
+    <circle cx="58" cy="42" r="13" fill="#2f5d7c"/>
+  </svg>
+  <h1>Nuée</h1>
+  <p class="lead">Your data, on all your devices. Directly between them, with no server.</p>
+
+  <section class="card" id="invitation" hidden aria-labelledby="invitation-title">
+    <h2 id="invitation-title">You are invited to a nuée</h2>
+    <p>Install Nuée below, then come back to this page and join:</p>
+    <a class="button" id="join-link" href="#">Join the nuée</a>
+    <p class="hint">Keep the window with the QR open on the other device, and stay on its Wi-Fi. If
+      Nuée asks for a code, type <strong class="inline-code" id="invitation-code"></strong>.</p>
+  </section>
+
+  <section class="card" id="android" hidden aria-labelledby="android-title">
+    <h2 id="android-title">Nuée for Android</h2>
+    <a class="button" href="Nuee-arm64.apk">Download Nuée</a>
+    <ol>
+      <li>Open the downloaded file, and allow your browser to install apps if Android asks.</li>
+      <li id="android-join-step">Open Nuée, and enter your nuée with your mail address, or with the code one of your devices shows.</li>
+    </ol>
+  </section>
+
+  <section class="card" id="linux" hidden aria-labelledby="linux-title">
+    <h2 id="linux-title">Nuée for Linux</h2>
+    <p>In a terminal:</p>
+    <pre id="linux-command">curl -fsSL https://aco-hub.github.io/nuee-releases/install.sh | sh</pre>
+    <button class="button secondary" type="button" id="copy-command">Copy the command</button>
+    <ol>
+      <li>It installs Nuée the way your distribution expects: Debian, Ubuntu, Fedora, openSUSE, Arch and the others.</li>
+      <li>Open “Nuée” from your applications menu.</li>
+    </ol>
+  </section>
+
+  <section class="card" id="unavailable" hidden aria-labelledby="unavailable-title">
+    <h2 id="unavailable-title">Not on this device yet</h2>
+    <p id="unavailable-reason"></p>
+    <p class="hint">Nuée runs on Android and Linux today.</p>
+  </section>
+
+  <details id="other-platforms">
+    <summary>Other platforms</summary>
+    <p>Android: <a href="Nuee-arm64.apk">Nuee-arm64.apk</a></p>
+    <p>Linux, x86-64 and arm64: <code>curl -fsSL https://aco-hub.github.io/nuee-releases/install.sh | sh</code></p>
+    <p>Windows and macOS: later. iPhone and iPad: not possible, Apple does not let an app run the apps
+      it downloads.</p>
+  </details>
+</main>
+<script>
+  // The invitation is the text after `#`, never sent anywhere: "Join the nuée" hands it to Nuée, which
+  // opens and joins with it.
+  const invitationText = decodeURIComponent(location.hash.slice(1));
+  const invitationQuery = invitationText.startsWith('nuee:pairing/') ? invitationText.split('?')[1] ?? '' : '';
+  const invitationCode = new URLSearchParams(invitationQuery).get('code');
+  if (invitationCode) {
+    document.getElementById('invitation-code').textContent = invitationCode;
+    document.getElementById('join-link').href = invitationText;
+    document.getElementById('invitation').hidden = false;
+    document.getElementById('android-join-step').textContent = 'Come back to this page and tap “Join the nuée”.';
+  }
+
+  const userAgent = navigator.userAgent;
+  const isAppleTouch = /iPhone|iPad|iPod/.test(userAgent) || (/Macintosh/.test(userAgent) && navigator.maxTouchPoints > 1);
+  const platform = /Android/.test(userAgent) ? 'android'
+    : isAppleTouch ? 'apple-touch'
+    : /Windows/.test(userAgent) ? 'windows'
+    : /Macintosh|Mac OS X/.test(userAgent) ? 'mac'
+    : /Linux|X11|CrOS/.test(userAgent) ? 'linux'
+    : 'other';
+
+  const unavailable = {
+    'apple-touch': ['Not possible on iPhone and iPad', 'Apple does not let an app run the apps it downloads, which is how Nuée installs its apps.'],
+    windows: ['Not on Windows yet', 'Nuée for Windows is planned for later.'],
+    mac: ['Not on macOS yet', 'Nuée for macOS is planned for later.'],
+  };
+  if (platform === 'android' || platform === 'linux') {
+    document.getElementById(platform).hidden = false;
+  } else if (unavailable[platform]) {
+    const [title, reason] = unavailable[platform];
+    document.getElementById('unavailable-title').textContent = title;
+    document.getElementById('unavailable-reason').textContent = reason;
+    document.getElementById('unavailable').hidden = false;
+  } else {
+    document.getElementById('android').hidden = false;
+    document.getElementById('linux').hidden = false;
+  }
+
+  document.getElementById('copy-command').addEventListener('click', async (event) => {
+    await navigator.clipboard.writeText(document.getElementById('linux-command').textContent);
+    event.target.textContent = 'Copied';
+  });
+</script>
+</body>
+</html>
