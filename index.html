@@ -80,7 +80,8 @@
     color: var(--accent);
   }
 
-  #join-link {
+  #join-link,
+  #admission-link {
     margin: .25rem 0 .9rem;
   }
 
@@ -169,6 +170,15 @@
       Nuée asks for a code, type <strong class="inline-code" id="invitation-code"></strong>.</p>
   </section>
 
+  <section class="card" id="admission" hidden aria-labelledby="admission-title">
+    <h2 id="admission-title">A device asks to join your nuée</h2>
+    <p>It shows the code <strong class="inline-code" id="admission-code"></strong>. Open Nuée on this
+      device, which is in your nuée, to add it:</p>
+    <a class="button" id="admission-link" href="#">Open Nuée</a>
+    <p class="hint">Nuée asks you to confirm before it adds anything. Keep the screen with the QR open
+      on the new device.</p>
+  </section>
+
   <section class="card" id="android" hidden aria-labelledby="android-title">
     <h2 id="android-title">Nuée for Android</h2>
     <a class="button" href="Nuee-arm64.apk">Download Nuée</a>
@@ -207,13 +217,17 @@
   // The invitation is the text after `#`, never sent anywhere: "Join the nuée" hands it to Nuée, which
   // opens and joins with it.
   const invitationText = decodeURIComponent(location.hash.slice(1));
-  const invitationQuery = invitationText.startsWith('nuee:pairing/') ? invitationText.split('?')[1] ?? '' : '';
-  const invitationCode = new URLSearchParams(invitationQuery).get('code');
-  if (invitationCode) {
+  const invitationCode = new URLSearchParams(invitationText.split('?')[1] ?? '').get('code');
+  // A device of a nuée shows a code to let this one in; a new device shows one to be let in.
+  if (invitationCode && invitationText.startsWith('nuee:pairing/')) {
     document.getElementById('invitation-code').textContent = invitationCode;
     document.getElementById('join-link').href = invitationText;
     document.getElementById('invitation').hidden = false;
     document.getElementById('android-join-step').textContent = 'Come back to this page and tap “Join the nuée”.';
+  } else if (invitationCode && invitationText.startsWith('nuee:join/')) {
+    document.getElementById('admission-code').textContent = invitationCode;
+    document.getElementById('admission-link').href = invitationText;
+    document.getElementById('admission').hidden = false;
   }
 
   const userAgent = navigator.userAgent;
